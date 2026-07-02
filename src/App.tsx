@@ -414,6 +414,40 @@ export default function App() {
   }, [chatMessages]);
 
   const generateDailyTasks = (user: UserType) => {
+    const today = new Date().toISOString().split("T")[0];
+    const seed = today.split("-").join("") + user.id;
+    const seedNum = seed.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+    const shuffleWithSeed = (array: Task[], seedValue: number) => {
+      const arr = [...array];
+      let currentSeed = seedValue;
+      for (let i = arr.length - 1; i > 0; i--) {
+        currentSeed = (currentSeed * 9301 + 49297) % 233280;
+        const j = Math.floor((currentSeed / 233280) * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    };
+
+    let combined: Task[] = [];
+    user.goals.forEach((goal, idx) => {
+      if (TASK_POOL[goal]) {
+        const shuffled = shuffleWithSeed(TASK_POOL[goal], seedNum + idx);
+        combined.push(...shuffled.slice(0, 2));
+      }
+    });
+
+    const allGoals = Object.keys(TASK_POOL);
+    for (const goal of allGoals) {
+      if (combined.length >= 6) break;
+      if (!user.goals.includes(goal) && TASK_POOL[goal]) {
+        const shuffled = shuffleWithSeed(TASK_POOL[goal], seedNum);
+        combined.push(...shuffled.slice(0, 2));
+      }
+    }
+
+    setTasks(combined.slice(0, 6));
+  };
     let combined: Task[] = [];
     user.goals.forEach((goal) => {
       if (TASK_POOL[goal]) {

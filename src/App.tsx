@@ -456,13 +456,6 @@ export default function App() {
 
     setTasks(combined.slice(0, 6));
   };
-    let combined: Task[] = [];
-    user.goals.forEach((goal) => {
-      if (TASK_POOL[goal]) {
-        combined.push(...TASK_POOL[goal].slice(0, 2));
-      }
-    });
-
     const allGoals = Object.keys(TASK_POOL);
     for (const goal of allGoals) {
       if (combined.length >= 6) break;

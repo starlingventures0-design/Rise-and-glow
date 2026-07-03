@@ -245,7 +245,7 @@ const generateProgressHistory = (user: any) => {
 };
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
+  const [dbStatus, setDbStatus] = useState<{ status: string; type: string; url: string | null } | null>(null);
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [activeTab, setActiveTab] = useState<string>("dashboard");
 
@@ -320,7 +320,12 @@ export default function App() {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("rania_glow_user");
+    useEffect(() => {
+    fetch("/api/db-status")
+      .then(res => res.json())
+      .then(data => setDbStatus(data))
+      .catch(err => console.error("Error fetching db status:", err));
+  }, []);
     if (savedUser) {
       try {
         const parsed = JSON.parse(savedUser);

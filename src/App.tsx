@@ -456,17 +456,6 @@ export default function App() {
 
     setTasks(combined.slice(0, 6));
   };
-    const allGoals = Object.keys(TASK_POOL);
-    for (const goal of allGoals) {
-      if (combined.length >= 6) break;
-      if (!user.goals.includes(goal) && TASK_POOL[goal]) {
-        combined.push(...TASK_POOL[goal].slice(0, 2));
-      }
-    }
-
-    setTasks(combined.slice(0, 6));
-  };
-
   const fetchLeaderboard = async () => {
     try {
       const res = await fetch("/api/leaderboard");

@@ -1044,14 +1044,14 @@ export default function App() {
     localStorage.removeItem("rania_glow_user");
     setActiveTab("dashboard");
   };
-
   const handleTaskToggle = async (taskId: string, completed: boolean) => {
     if (!currentUser) return;
+    const task = tasks.find((t) => t.id === taskId);
     try {
-      const res = await fetch(`/api/users/${currentUser.id}/tasks/${taskId}`, {
+      const res = await fetch(`/api/users/${currentUser.id}/tasks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ completed }),
+        body: JSON.stringify({ taskId, isCompleted: completed, taskTitle: task?.title || taskId }),
       });
       if (res.ok) {
         const updated = await res.json();

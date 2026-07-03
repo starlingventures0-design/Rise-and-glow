@@ -246,6 +246,7 @@ const generateProgressHistory = (user: any) => {
 
 export default function App() {
   const [dbStatus, setDbStatus] = useState<{ status: string; type: string; url: string | null } | null>(null);
+  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
   const [authMode, setAuthMode] = useState<"register" | "login">("register");
   const [activeTab, setActiveTab] = useState<string>("dashboard");
 

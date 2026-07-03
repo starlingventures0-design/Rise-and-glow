@@ -1109,7 +1109,28 @@ export default function App() {
       setViewingProfileUser(user);
     }
   };
-  if (isAdminRoute) {
+ const handleSendChatMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!currentUser || !newChatMessage.trim()) return;
+    const room = activePrivateUser
+      ? (currentUser.id < activePrivateUser.id ? `private_${currentUser.id}_${activePrivateUser.id}` : `private_${activePrivateUser.id}_${currentUser.id}`)
+      : activeChatRoom;
+    const msgText = newChatMessage.trim();
+    setNewChatMessage("");
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: currentUser.id, authorName: currentUser.firstName, text: msgText, room }),
+      });
+      if (res.ok) {
+        fetchChatMessages(room);
+      }
+    } catch (e) {
+      console.error("Error sending chat message:", e);
+    }
+  };
+if (isAdminRoute) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#fdfbfc] via-white to-[#f5f1ff] text-slate-800 flex flex-col font-sans relative p-4 md:p-8 selection:bg-pink-200">
         

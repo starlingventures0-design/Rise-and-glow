@@ -321,12 +321,14 @@ export default function App() {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    useEffect(() => {
     fetch("/api/db-status")
       .then(res => res.json())
       .then(data => setDbStatus(data))
       .catch(err => console.error("Error fetching db status:", err));
   }, []);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("rania_glow_user");
     if (savedUser) {
       try {
         const parsed = JSON.parse(savedUser);

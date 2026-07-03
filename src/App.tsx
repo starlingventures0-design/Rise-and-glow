@@ -1063,24 +1063,22 @@ export default function App() {
       console.error("Error toggling task:", e);
     }
   };
-
   const handlePlantWateringClick = async () => {
     if (!currentUser) return;
     try {
-      const res = await fetch(`/api/users/${currentUser.id}/water-plant`, {
+      const res = await fetch(`/api/users/${currentUser.id}/plant-water`, {
         method: "POST"
       });
       if (res.ok) {
-        const updated = await res.json();
-        setCurrentUser(updated);
-        localStorage.setItem("rania_glow_user", JSON.stringify(updated));
+        const result = await res.json();
+        setCurrentUser(result.user);
+        localStorage.setItem("rania_glow_user", JSON.stringify(result.user));
         setCustomToast("تم سقي نبتتكِ بنجاح! استمري 🌱💧");
       }
     } catch (e) {
       console.error("Error watering plant:", e);
     }
   };
-
   const handleGoalUpdateInDashboard = async (newGoals: string[]) => {
     if (!currentUser || newGoals.length === 0) return;
     const updated = {

@@ -2081,6 +2081,22 @@ export default function App() {
                </div>
                               )
                             ) : (
+              <button
+               onClick={() => {
+                setActiveFriendshipChat(friendship);
+                fetchPrivateMessages(friendship.id);
+                }} 
+               className="px-3 py-1.5 bg-purple-500 hover:bg-purple-600 text-white text-[10px] font-bold rounded-xl transition-all shadow-sm"
+               > 
+               مراسلة 💬
+               </button>
+                        )} 
+                           </div>
+                         </div>
+                       ); 
+                   })} 
+                   </div>
+         )} 
               <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
                 <h3 className="font-extrabold text-base text-purple-800 mb-2 flex items-center gap-2">
                   <span>👭 صديقاتي المتوهجات</span>

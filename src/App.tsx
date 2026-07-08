@@ -2078,9 +2078,9 @@ export default function App() {
                                 <div className="flex gap-1.5">
                                   <button onClick={() => respondToFriendRequest(friendship.id, "accepted")} className="px-2 py-1 bg-green-500 text-white text-[9px] font-bold rounded-lg hover:bg-green-600">قبول 👍</button>
                                   <button onClick={() => respondToFriendRequest(friendship.id, "declined")} className="px-2 py-1 bg-slate-200 text-slate-600 text-[9px] font-bold rounded-lg hover:bg-slate-300">رفض</button>
-                                </div>
-                             ) 
-            ) : (
+               </div>
+                              )
+                            ) : (
               <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
                 <h3 className="font-extrabold text-base text-purple-800 mb-2 flex items-center gap-2">
                   <span>👭 صديقاتي المتوهجات</span>

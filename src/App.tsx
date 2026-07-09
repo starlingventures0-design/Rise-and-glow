@@ -2686,7 +2686,7 @@ export default function App() {
         </div>
       )}
 
-      {/* تبويب غرف الدردشة العامة */}
+      (/* تبويب غرف الدردشة العامة */) 
               {activeTab === "chat" && (
 <div className="bg-white rounded-3xl border border-pink-100/60 shadow-md flex-1 flex flex-col md:flex-row overflow-hidden min-h-[550px] max-h-[700px]">
 <div className="w-full md:w-80 border-e border-pink-50 flex flex-col bg-gradient-to-b from-pink-50/20 to-purple-50/10 flex-shrink-0">

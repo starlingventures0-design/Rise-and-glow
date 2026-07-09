@@ -2540,37 +2540,7 @@ export default function App() {
             )}
           </div>
         </div>
-      )}
-                </div>
-                <div className="p-3 border-t border-pink-50 bg-white flex gap-2">
-                  <textarea
-                    placeholder="اكتبي رسالتكِ السرية واللطيفة هنا..."
-                    value={newPrivateMessage}
-                    onChange={(e) => setNewPrivateMessage(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        sendPrivateMessage();
-                      }
-                    }}
-                    rows={1}
-                    className="flex-1 bg-pink-50/30 border border-pink-100 rounded-2xl p-3 text-xs outline-none focus:ring-1 focus:ring-pink-300 resize-none max-h-24 text-right"
-                  />
-                  <button onClick={sendPrivateMessage} className="p-3 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl flex items-center justify-center shadow-md shadow-pink-100 cursor-pointer">
-                    <Send className="w-4 h-4 transform rotate-180" />
-                  </button>
-                </div>
-              </div>
-            
-              <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
-               {!friendsSearchLoading && friendsSearchResults.length === 0 && friendsSearchQuery && (
-                  <p className="text-center py-4 text-xs text-slate-400">
-                    لم نعثر على عضوات بهذا الاسم.. تأكدي من كتابة الاسم بشكل صحيح 🌸💡
-                  </p>
-                  )}
-                </div>
-              )}
-            </div> 
+     )} 
                   <div className="space-y-3 divide-y divide-pink-50 max-h-48 overflow-y-auto">
                     {incomingRequests.map((req) => (
                       <div key={req.id} className="pt-3 flex items-center justify-between">

@@ -2790,7 +2790,7 @@ className="hover:text-pink-500 cursor-pointer font-extrabold text-sm text-right 
 ? "محادثة 
 مشفرة آمنة تماماً ولا يمكن لأي طرف آخر الاطلاع عليها برعاية رانيا."
                            : "مساحة جماعية آمنة للبنات لتبادل المنشورات والتجارب المباشرة."{
-</p>
+<activePrivateUserp>
       </div>
 </div>
  {activePrivateUser && (

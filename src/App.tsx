@@ -2331,7 +2331,6 @@ export default function App() {
                   )}
                   <div ref={chatEndRef} />
                 </div>
-
                 <div className="p-3 border-t border-pink-50 bg-white flex gap-2">
                   <textarea
                     placeholder="اكتبي رسالتكِ السرية واللطيفة هنا..."
@@ -2357,19 +2356,10 @@ export default function App() {
                   <p className="text-center py-4 text-xs text-slate-400">
                     لم نعثر على عضوات بهذا الاسم.. تأكدي من كتابة الاسم بشكل صحيح 🌸💡
                   </p>
-                )}
-              </div>
-            </div>
-) : (
-              <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
-                {!friendsSearchLoading && friendsSearchResults.length === 0 && friendsSearchQuery && (
-                  <p className="text-center py-4 text-xs text-slate-400">
-                    لم نعثر على عضوات بهذا الاسم.. تأكدي من كتابة الاسم بشكل صحيح 🌸💡
-                  </p>
-                )}
-              </div>
-            )}
-          </div> 
+                  )}
+                </div>
+              )}
+            </div> 
                   <div className="space-y-3 divide-y divide-pink-50 max-h-48 overflow-y-auto">
                     {incomingRequests.map((req) => (
                       <div key={req.id} className="pt-3 flex items-center justify-between">

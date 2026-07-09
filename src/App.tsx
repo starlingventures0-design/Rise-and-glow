@@ -2541,15 +2541,7 @@ export default function App() {
           </div>
         </div>
      )} 
-                  <div className="space-y-3 divide-y divide-pink-50 max-h-48 overflow-y-auto">
-                    {incomingRequests.map((req) => (
-                      <div key={req.id} className="pt-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <button onClick={() => openUserProfile(req.senderId)}>
-                            {renderUserAvatar(req.senderId, "w-8 h-8 text-xs")}
-                          </button>
-                          <div className="text-right">
-                            <span onClick={() => openUserProfile(req.senderId)} className="font-extrabold text-slate-700 text-xs block cursor-pointer ho
+  
           <div className="lg:col-span-7 space-y-6">
             {activeFriendshipChat ? (
               <div className="bg-white rounded-3xl border border-pink-100/60 shadow-md flex flex-col h-[550px] overflow-hidden">

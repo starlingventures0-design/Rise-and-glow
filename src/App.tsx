@@ -2095,7 +2095,7 @@ export default function App() {
                          </div>
                        ); 
                    })} 
-                   </div>
+                 </div>
          )} 
                {!friendsSearchLoading && friendsSearchResults.length === 0 && friendsSearchQuery && (
                   <p className="text-center py-4 text-xs text-slate-400">
@@ -2113,6 +2113,129 @@ export default function App() {
                 </span>
               </h3>
 
+              {(() => {
+                const incomingRequests = userFriendships.filter((f) => f.status === "pending" && f.receiverId === currentUser?.id);
+                if (incomingRequests.length === 0) {
+                  return (
+                    <p className="text-center py-4 text-xs text-slate-400">
+                      لا توجد طلبات صداقة واردة حالياً. كوني مبادرة وابحثي عن صديقاتكِ بالأعلى! 🥰🌸
+                    </p>
+                  );
+                }
+                return (
+                  <div className="space-y-3 divide-y divide-pink-50 max-h-48 overflow-y-auto">
+                    {incomingRequests.map((req) => (
+                      <div key={req.id} className="pt-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <button onClick={() => openUserProfile(req.senderId)}>
+                            {renderUserAvatar(req.senderId, "w-8 h-8 text-xs")}
+                          </button>
+                          <div className="text-right">
+                            <span onClick={() => openUserProfile(req.senderId)} className="font-extrabold text-slate-700 text-xs block cursor-pointer hover:text-pink-500">
+                              {req.senderName}
+                            </span>
+                            <span className="text-[9px] text-slate-400">ترغب في مرافقتكِ بالتوهج 👭</span>
+                          </div>
+                        </div>
+                        <div className="flex gap-1.5">
+                          <button onClick={() => respondToFriendRequest(req.id, "accepted")} className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-[10px] font-bold rounded-xl transition-all shadow-sm">قبول 👍</button>
+                          <button onClick={() => respondToFriendRequest(req.id, "declined")} className="px-3 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 text-[10px] font-bold rounded-xl transition-all">تجاهل</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 space-y-6">
+            {activeFriendshipChat ? (
+              <div className="bg-white rounded-3xl border border-pink-100/60 shadow-md flex flex-col h-[550px] overflow-hidden">
+                <div className="p-4 border-b border-pink-50 bg-gradient-to-r from-pink-50/10 to-purple-50/10 flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => {
+                        const otherId = activeFriendshipChat.senderId === currentUser?.id ? activeFriendshipChat.receiverId : activeFriendshipChat.senderId;
+                        openUserProfile(otherId);
+                      }}
+                    >
+                      {renderUserAvatar(activeFriendshipChat.senderId === currentUser?.id ? activeFriendshipChat.receiverId : activeFriendshipChat.senderId, "w-10 h-10")}
+                    </button>
+                    <div className="text-right">
+                      <h4 className="font-extrabold text-sm text-purple-900">
+                        دردشة خاصة مع {activeFriendshipChat.senderId === currentUser?.id ? activeFriendshipChat.receiverName : activeFriendshipChat.senderName}
+                      </h4>
+                      <p className="text-[9px] text-emerald-600 font-bold">● مساحة مشفرة وآمنة تماماً للبنات 🌸🔒</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setActiveFriendshipChat(null)} className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-all">
+                    رجوع للصديقات ➔
+                  </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/40">
+                  {privateMessages.length === 0 ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-3">
+                      <div className="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-xl">💬</div>
+                      <p className="text-xs font-bold text-slate-600">هذه هي بداية مساحتكم السرية والآمنة!</p>
+                      <p className="text-[10px] text-slate-400 max-w-xs leading-relaxed">
+                        ابدأوا بتبادل أسرار الجمال، والتحفيز المتبادل بكل محبة وأمان 🌸👭
+                      </p>
+                    </div>
+                  ) : (
+                    privateMessages.map((msg) => {
+                      const isMe = msg.senderId === currentUser?.id;
+                      return (
+                        <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"} items-end gap-2`}>
+                          {!isMe && renderUserAvatar(msg.senderId, "w-6 h-6 text-[8px]")}
+                          <div className="max-w-[75%] space-y-1">
+                            <div className={`p-3 rounded-2xl text-xs leading-relaxed ${isMe ? "bg-purple-600 text-white rounded-br-none text-right" : "bg-white border border-pink-100 text-slate-800 rounded-bl-none text-right"}`}>
+                              <p className="whitespace-pre-wrap">{msg.text}</p>
+                              <span className="block text-[8px] opacity-70 mt-1 text-left font-sans">
+                                {new Date(msg.createdAt).toLocaleTimeString("ar-EG", { hour: "2-digit", minute: "2-digit" })}
+                              </span>
+                            </div>
+                            {!isMe && (
+                              <button onClick={() => { setChatReportTarget(msg); setChatReportReason(""); }} className="text-[9px] text-red-400 hover:text-red-600 hover:underline flex items-center gap-0.5">
+                                ⚠️ إبلاغ عن تجاوز
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                  <div ref={chatEndRef} />
+                </div>
+
+                <div className="p-3 border-t border-pink-50 bg-white flex gap-2">
+                  <textarea
+                    placeholder="اكتبي رسالتكِ السرية واللطيفة هنا..."
+                    value={newPrivateMessage}
+                    onChange={(e) => setNewPrivateMessage(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendPrivateMessage();
+                      }
+                    }}
+                    rows={1}
+                    className="flex-1 bg-pink-50/30 border border-pink-100 rounded-2xl p-3 text-xs outline-none focus:ring-1 focus:ring-pink-300 resize-none max-h-24 text-right"
+                  />
+                  <button onClick={sendPrivateMessage} className="p-3 bg-pink-500 hover:bg-pink-600 text-white rounded-2xl flex items-center justify-center shadow-md shadow-pink-100 cursor-pointer">
+                    <Send className="w-4 h-4 transform rotate-180" />
+                  </button>
+                </div>
+              </div>
+            ) : (
+            <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
+              <h3 className="font-extrabold text-xs text-purple-800 mb-3 flex items-center gap-2">
+                <span>💌 طلبات الصداقة الواردة إليكِ</span>
+                <span className="px-2 py-0.5 bg-pink-100 text-pink-600 rounded-full text-[10px]">
+                  {userFriendships.filter((f) => f.status === "pending" && f.receiverId === currentUser?.id).length}
+                </span>
+              </h3>
               {(() => {
                 const incomingRequests = userFriendships.filter((f) => f.status === "pending" && f.receiverId === currentUser?.id);
                 if (incomingRequests.length === 0) {

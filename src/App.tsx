@@ -2404,7 +2404,7 @@ export default function App() {
                       </p>
                     </div>
                   ) : (
-                    privateMessages.map((msg) => {
+                    {privateMessages.map((msg) => {
                       const isMe = msg.senderId === currentUser?.id;
                       return (
                         <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"} items-end gap-2`}>

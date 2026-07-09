@@ -2706,9 +2706,8 @@ export default function App() {
 const isSelected = !activePrivateUser && activeChatRoom === room.id;
 return (
 <button
-key={room.id}
-onClick={()
-=> {
+  key={room.id}
+  onClick={() => {
 setActivePrivateUser(null);
 setActiveChatRoom(room.id);
 fetchChatMessages(room.id);

@@ -2622,7 +2622,8 @@ export default function App() {
                 </div>
               </div>
             ) : (
-                <h3 className="font-extrabold text-base text-purple-800 mb-2 flex items-center gap-2">
+              <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md"> 
+ <h3 className="font-extrabold text-base text-purple-800 mb-2 flex items-center gap-2">
                   <span>👭 صديقاتي المتوهجات</span>
                   <span className="px-2.5 py-0.5 bg-purple-100 text-purple-600 rounded-full text-xs">
                     {userFriendships.filter((f) => f.status === "accepted").length}

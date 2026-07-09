@@ -2351,7 +2351,7 @@ export default function App() {
                   </button>
                 </div>
               </div>
-            ) : (
+            
               <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
                {!friendsSearchLoading && friendsSearchResults.length === 0 && friendsSearchQuery && (
                   <p className="text-center py-4 text-xs text-slate-400">
@@ -2360,25 +2360,16 @@ export default function App() {
                 )}
               </div>
             </div>
-
-            <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
-              <h3 className="font-extrabold text-xs text-purple-800 mb-3 flex items-center gap-2">
-                <span>💌 طلبات الصداقة الواردة إليكِ</span>
-                <span className="px-2 py-0.5 bg-pink-100 text-pink-600 rounded-full text-[10px]">
-                  {userFriendships.filter((f) => f.status === "pending" && f.receiverId === currentUser?.id).length}
-                </span>
-              </h3>
-
-              {(() => {
-                const incomingRequests = userFriendships.filter((f) => f.status === "pending" && f.receiverId === currentUser?.id);
-                if (incomingRequests.length === 0) {
-                  return (
-                    <p className="text-center py-4 text-xs text-slate-400">
-                      لا توجد طلبات صداقة واردة حالياً. كوني مبادرة وابحثي عن صديقاتكِ بالأعلى! 🥰🌸
-                    </p>
-                  );
-                }
-                return (
+) : (
+              <div className="bg-white rounded-3xl p-6 border border-pink-100/60 shadow-md">
+                {!friendsSearchLoading && friendsSearchResults.length === 0 && friendsSearchQuery && (
+                  <p className="text-center py-4 text-xs text-slate-400">
+                    لم نعثر على عضوات بهذا الاسم.. تأكدي من كتابة الاسم بشكل صحيح 🌸💡
+                  </p>
+                )}
+              </div>
+            )}
+          </div> 
                   <div className="space-y-3 divide-y divide-pink-50 max-h-48 overflow-y-auto">
                     {incomingRequests.map((req) => (
                       <div key={req.id} className="pt-3 flex items-center justify-between">
@@ -2387,24 +2378,7 @@ export default function App() {
                             {renderUserAvatar(req.senderId, "w-8 h-8 text-xs")}
                           </button>
                           <div className="text-right">
-                            <span onClick={() => openUserProfile(req.senderId)} className="font-extrabold text-slate-700 text-xs block cursor-pointer hover:text-pink-500">
-                              {req.senderName}
-                            </span>
-                            <span className="text-[9px] text-slate-400">ترغب في مرافقتكِ بالتوهج 👭</span>
-                          </div>
-                        </div>
-                        <div className="flex gap-1.5">
-                          <button onClick={() => respondToFriendRequest(req.id, "accepted")} className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-[10px] font-bold rounded-xl transition-all shadow-sm">قبول 👍</button>
-                          <button onClick={() => respondToFriendRequest(req.id, "declined")} className="px-3 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 text-[10px] font-bold rounded-xl transition-all">تجاهل</button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                );
-              })()}
-            </div>
-          </div>
-
+                            <span onClick={() => openUserProfile(req.senderId)} className="font-extrabold text-slate-700 text-xs block cursor-pointer ho
           <div className="lg:col-span-7 space-y-6">
             {activeFriendshipChat ? (
               <div className="bg-white rounded-3xl border border-pink-100/60 shadow-md flex flex-col h-[550px] overflow-hidden">

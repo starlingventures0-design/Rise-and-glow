@@ -2802,7 +2802,6 @@ className="text-[10px] bg-pink-50 hover:bg-pink-100 text-pink-600 font-bold px-2
  العودة للغرف العامة ➔
 </button>
  )}
-</div>
 <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-pink-50/10 min-h-[300px]">
 {(chatMessages ?? []).length === 0 ? (
 <div className="h-full flex flex-col items-center justify-center text-slate-400 text-xs">

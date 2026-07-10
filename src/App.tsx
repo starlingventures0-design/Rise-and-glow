@@ -3255,7 +3255,7 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
             ){
 
  }/* نافذة المنبثقة للإبلاغ عن المحتوى السيء */{
-            {chatReportTarget {(
+            }chatReportTarget{(
               <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-md flex items-center justify-center z-50 p-4" dir="rtl">
                 <div className="bg-white w-full max-w-md rounded-3xl overflow-hidden border border-pink-100 shadow-2xl flex flex-col p-6 space-y-4">
                   <h3 className="font-extrabold text-base text-red-600 text-right">⚠️ الإبلاغ عن تجاوز</h3>

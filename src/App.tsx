@@ -2864,7 +2864,7 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
    ){
 
             {/* تبويب لوحة المتصدرين والترتيب العام */}
-            {activeTab === "leaderboard" && (
+            }activeTab === "leaderboard" && (
               <div className="space-y-6">
                 
                 <div className="bg-white rounded-3xl p-6 border border-pink-100/50 shadow-md">

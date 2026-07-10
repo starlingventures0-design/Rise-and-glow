@@ -3192,7 +3192,7 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
                 )}
 
               </div>
-            )}
+            ){
 
             {/* نافذة المنبثقة لعرض حساب الصديقات */}
             {viewingProfileUser && (
@@ -3291,9 +3291,6 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
               <div className="fixed bottom-8 left-4 md:left-8 z-50 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-extrabold text-xs px-5 py-3.5 rounded-full shadow-2xl border border-pink-300 flex items-center gap-2 animate-bounce">
                 🌸 {customToast}
               </div>
-            )}
-
-          </div>
         </div>
       )}
     </div>

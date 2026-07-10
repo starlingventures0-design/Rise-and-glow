@@ -2861,7 +2861,7 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
 <Send className="w-4 h-4 transform rotate-180" />
 </button>
 </form>
-   )}
+   ){
 
             {/* تبويب لوحة المتصدرين والترتيب العام */}
             {activeTab === "leaderboard" && (

@@ -3117,7 +3117,7 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
                       ))}
                     </div>
 
-                    <div className="mt-12 bg-white rounded-3xl p-6 border border-red-100 shadow-md">
+                 activePrivateUserp"mt-12 bg-white rounded-3xl p-6 border border-red-100 shadow-md">
                       <div className="border-b border-red-50 pb-4 mb-4 flex justify-between items-center flex-wrap gap-2">
                         <div className="text-right">
                           <h4 className="font-extrabold text-base text-red-600 flex items-center gap-2 justify-end">
@@ -3294,5 +3294,4 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
       )}
   );
    {
-    </activePrivateUserp/> 
-
+< Active chat room activePrivateUserp/>                                          

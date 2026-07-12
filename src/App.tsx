@@ -3187,11 +3187,11 @@ className="w-10 h-10 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex 
                       )}
                     </div>
                   </div>
-                ){
-              <adminReports div>
-            ){
+                )} 
+              </div>
+            )} 
             {/* نافذة منبثقة لعرض حساب الصديقة */}
-             }viewingProfileUser && (
+             {viewingProfileUser && (
               <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-md flex items-center justify-center z-50 p-4" dir="rtl">
                 <div className="bg-white w-full max-w-md rounded-3xl overflow-hidden border border-pink-100 shadow-2xl flex flex-col animate-in fade-in-50 zoom-in-95 duration-200">
                

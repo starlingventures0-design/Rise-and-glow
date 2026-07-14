@@ -2320,12 +2320,9 @@ export default function App() {
                             </div>
                           </div>
                           <div>
-                            {!friendship ? (
-                              <button onClick={() => sendFriendRequest(user.id)} className="px-3 py-1.5 bg-pink-500 hover:bg-pink-600 text-white text-[10px] font-bold rounded-xl transition-all shadow-sm">
-                                إضافة صديقة 🌸
-                              </button>
-                            ) : friendship.status === "pending" ? (
-                              friendship.senderId === currentUser?.id ? (
+spas block cursor-pointer hover:text-pink-500">
+                              {req.senderName}
+                            </span.senderId === currentUser?.id ? (
                                 <span className="text-[10px] bg-yellow-50 text-yellow-600 font-bold px-2 py-1 rounded-full border border-yellow-100">
                                   طلب معلق ⏳
                                 </span>
